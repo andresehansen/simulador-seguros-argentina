@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://simulador-seguros.vercel.app/sitemap.xml

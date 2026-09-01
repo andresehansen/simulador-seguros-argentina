@@ -1,0 +1,52 @@
+[
+  {
+    "slug": "buenos-aires",
+    "nombre": "Ciudad Autónoma de Buenos Aires",
+    "provincia": "Buenos Aires",
+    "factorRiesgoUrbano": 1.35,
+    "indiceRobo": "Alto",
+    "climaExtremoRiesgo": "Granizo e Inundaciones Urbanas",
+    "consejoLocal": "En la zona metropolitana de CABA, el tráfico denso y el riesgo de robos parciales hacen altamente recomendable contar con pólizas de Terceros Completo con cláusula de granizo sin límite.",
+    "estadisticaLocal": "Concentra un flujo de más de 1.2 millones de vehículos diarios y una mayor tasa de siniestros leves de chapa y pintura."
+  },
+  {
+    "slug": "cordoba",
+    "nombre": "Córdoba Capital",
+    "provincia": "Córdoba",
+    "factorRiesgoUrbano": 1.20,
+    "indiceRobo": "Medio-Alto",
+    "climaExtremoRiesgo": "Granizo Frecuente y Caída de Ramas",
+    "consejoLocal": "Para conductores en Córdoba, la protección específica contra eventos climatológicos (granizo severo) es un factor crítico de decisión ante los costos de reparación de carrocería.",
+    "estadisticaLocal": "Registra una preferencia del 65% por coberturas de Terceros Completo con adicionales contra granizo."
+  },
+  {
+    "slug": "rosario",
+    "nombre": "Rosario",
+    "provincia": "Santa Fe",
+    "factorRiesgoUrbano": 1.25,
+    "indiceRobo": "Alto",
+    "climaExtremoRiesgo": "Tormentas Fuertes y Humedad",
+    "consejoLocal": "En Rosario, el índice de siniestralidad por robo parcial de ruedas y accesorios eleva los coeficientes de prima en coberturas básicas.",
+    "estadisticaLocal": "El 58% de las consultas corresponden a automóviles medianos de entre 4 y 8 años de antigüedad."
+  },
+  {
+    "slug": "mendoza",
+    "nombre": "Mendoza Capital",
+    "provincia": "Mendoza",
+    "factorRiesgoUrbano": 1.10,
+    "indiceRobo": "Medio",
+    "climaExtremoRiesgo": "Viento Zonda y Granizo Moderado",
+    "consejoLocal": "En Mendoza, las ráfagas del viento Zonda y la caída de ramas exigen verificar la cobertura de rotura de cristales y lunetas.",
+    "estadisticaLocal": "Mantiene tasas de prima promedio 15% más bajas respecto al cordón metropolitano de Buenos Aires."
+  },
+  {
+    "slug": "la-plata",
+    "nombre": "La Plata",
+    "provincia": "Buenos Aires",
+    "factorRiesgoUrbano": 1.18,
+    "indiceRobo": "Medio-Alto",
+    "climaExtremoRiesgo": "Anegamientos Tempestivos",
+    "consejoLocal": "Debido al diseño trazado y desagües de casco urbano, es clave confirmar la inclusión de asistencia mecánica de grúa rápida y protección ante inundación parcial.",
+    "estadisticaLocal": "Cuenta con una destacada proporción de parque automotor perteneciente a familias jóvenes y estudiantes."
+  }
+]

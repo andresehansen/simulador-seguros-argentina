@@ -1,0 +1,98 @@
+{
+  "rangoEdad": [
+    {
+      "min": 18,
+      "max": 24,
+      "multiplicador": 1.65,
+      "etiqueta": "Joven / Tramo estadístico de mayor siniestralidad",
+      "impacto": "Alto (+65%)"
+    },
+    {
+      "min": 25,
+      "max": 35,
+      "multiplicador": 1.20,
+      "etiqueta": "Adulto Joven",
+      "impacto": "Moderado (+20%)"
+    },
+    {
+      "min": 36,
+      "max": 60,
+      "multiplicador": 1.00,
+      "etiqueta": "Riesgo Estándar de Referencia",
+      "impacto": "Base (0%)"
+    },
+    {
+      "min": 61,
+      "max": 85,
+      "multiplicador": 1.30,
+      "etiqueta": "Conductor Senior",
+      "impacto": "Moderado (+30%)"
+    }
+  ],
+  "antiguedadLicenciaAnios": [
+    {
+      "min": 0,
+      "max": 1,
+      "multiplicador": 1.40,
+      "etiqueta": "Menos de 2 años de experiencia (Principiante)",
+      "impacto": "Alto (+40%)"
+    },
+    {
+      "min": 2,
+      "max": 5,
+      "multiplicador": 1.15,
+      "etiqueta": "Experiencia Intermedia (2 a 5 años)",
+      "impacto": "Bajo (+15%)"
+    },
+    {
+      "min": 6,
+      "max": 99,
+      "multiplicador": 1.00,
+      "etiqueta": "Experiencia Consolidada (+6 años)",
+      "impacto": "Base (0%)"
+    }
+  ],
+  "historialSiniestros": [
+    {
+      "id": "cero",
+      "multiplicador": 0.85,
+      "etiqueta": "Sin siniestros en los últimos 3 años (Bonificación)",
+      "impacto": "Descuento (-15%)"
+    },
+    {
+      "id": "uno",
+      "multiplicador": 1.15,
+      "etiqueta": "1 siniestro menor registrado",
+      "impacto": "Moderado (+15%)"
+    },
+    {
+      "id": "dos_o_mas",
+      "multiplicador": 1.60,
+      "etiqueta": "2 o más siniestros frecuentes registrados",
+      "impacto": "Alto (+60%)"
+    }
+  ],
+  "antiguedadVehiculoAnios": [
+    {
+      "min": 0,
+      "max": 2,
+      "multiplicador": 1.25,
+      "etiqueta": "Vehículo 0 km o Reciente (Alto valor de repuestos)",
+      "impacto": "Moderado (+25%)"
+    },
+    {
+      "min": 3,
+      "max": 10,
+      "multiplicador": 1.00,
+      "etiqueta": "Antigüedad Estándar (3 a 10 años)",
+      "impacto": "Base (0%)"
+    },
+    {
+      "min": 11,
+      "max": 30,
+      "multiplicador": 1.35,
+      "etiqueta": "Vehículo de más de 10 años (Recargo por repuestos y asistencia)",
+      "impacto": "Alto (+35%)"
+    }
+  ]
+}

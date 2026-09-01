@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "joven-novato",
+    "nombre": "Conductor Joven Novato",
+    "edad": 20,
+    "antiguedadLicenciaAnios": 1,
+    "historialSiniestros": "cero",
+    "antiguedadVehiculoAnios": 5,
+    "descripcionPerfil": "Conductores entre 18 y 24 años con menos de 2 años de licencia expedida. Representan el segmento con mayor coeficiente actuarial por falta de historial.",
+    "factoresClave": ["Falta de historial de manejo", "Mayor exposición estadística a siniestros urbanos", "Recargo por tramo de edad inicial"]
+  },
+  {
+    "slug": "conductor-experimento",
+    "nombre": "Conductor Experimentado",
+    "edad": 42,
+    "antiguedadLicenciaAnios": 15,
+    "historialSiniestros": "cero",
+    "antiguedadVehiculoAnios": 4,
+    "descripcionPerfil": "Conductores adultos con más de 10 años de trayectoria de manejo sin registros de siniestralidad reciente.",
+    "factoresClave": ["Máxima bonificación por historial limpio", "Antigüedad de carnet consolidada", "Perfil preferencial para aseguradoras"]
+  },
+  {
+    "slug": "conductor-familiar",
+    "nombre": "Uso Familiar y Cotidiano",
+    "edad": 38,
+    "antiguedadLicenciaAnios": 12,
+    "historialSiniestros": "cero",
+    "antiguedadVehiculoAnios": 2,
+    "descripcionPerfil": "Conductores de vehículos familiares de uso diario para traslados urbanos y viajes de fin de semana.",
+    "factoresClave": ["Uso mixto urbano e interurbano", "Requerimiento de coberturas amplias para terceros y ocupantes", "Vehículo reciente con bajo nivel de desgaste"]
+  },
+  {
+    "slug": "conductor-senior",
+    "nombre": "Conductor Senior (+65 años)",
+    "edad": 68,
+    "antiguedadLicenciaAnios": 40,
+    "historialSiniestros": "cero",
+    "antiguedadVehiculoAnios": 6,
+    "descripcionPerfil": "Conductores jubilados o senior con décadas de experiencia de conducción y kilometraje anual acotado.",
+    "factoresClave": ["Kilometraje anual reducido", "Décadas de antecedente de licencia", "Ajuste de prima según tabla actuarial senior"]
+  }
+]

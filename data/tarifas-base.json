@@ -1,0 +1,52 @@
+{
+  "auto": {
+    "nombre": "Seguro de Automóvil",
+    "descripcion": "Estimación para vehículos particulares de uso no comercial.",
+    "baseMensual": 35000,
+    "coberturas": [
+      {
+        "id": "terceros_basico",
+        "nombre": "Responsabilidad Civil / Terceros Básico",
+        "multiplicador": 1.0,
+        "descripcion": "Cubre daños a terceros y responsabilidad civil obligatoria."
+      },
+      {
+        "id": "terceros_completo",
+        "nombre": "Terceros Completo (Robo, Incendio y Granizo)",
+        "multiplicador": 1.45,
+        "descripcion": "Incluye responsabilidad civil, robo total/parcial, incendio y daños por granizo con tope."
+      },
+      {
+        "id": "todo_riesgo_franquicia",
+        "nombre": "Todo Riesgo con Franquicia",
+        "multiplicador": 2.1,
+        "descripcion": "Cobertura completa ante todo riesgo con una franquicia a cargo del asegurado."
+      },
+      {
+        "id": "todo_riesgo_sin_franquicia",
+        "nombre": "Todo Riesgo Premium Sin Franquicia",
+        "multiplicador": 3.2,
+        "descripcion": "Máxima protección sin deducción alguna ante siniestros parciales o totales."
+      }
+    ]
+  },
+  "hogar": {
+    "nombre": "Seguro de Hogar",
+    "descripcion": "Cobertura para viviendas particulares residenciales.",
+    "baseMensual": 18000,
+    "coberturas": [
+      {
+        "id": "incendio_contenido",
+        "nombre": "Incendio Edificio y Contenido Básico",
+        "multiplicador": 1.0,
+        "descripcion": "Protección básica estructural y de contenido ante incendio o explosión."
+      },
+      {
+        "id": "multirriesgo_hogar",
+        "nombre": "Multirriesgo Hogar y Robo",
+        "multiplicador": 1.75,
+        "descripcion": "Incluye robo de bienes, electrodomésticos, responsabilidad civil privada y cristales."
+      }
+    ]
+  }
+}
