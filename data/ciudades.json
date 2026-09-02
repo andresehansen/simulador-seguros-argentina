@@ -48,5 +48,105 @@
     "climaExtremoRiesgo": "Anegamientos Tempestivos",
     "consejoLocal": "Debido al diseño trazado y desagües de casco urbano, es clave confirmar la inclusión de asistencia mecánica de grúa rápida y protección ante inundación parcial.",
     "estadisticaLocal": "Cuenta con una destacada proporción de parque automotor perteneciente a familias jóvenes y estudiantes."
+  },
+  {
+    "slug": "mar-del-plata",
+    "nombre": "Mar del Plata",
+    "provincia": "Buenos Aires",
+    "factorRiesgoUrbano": 1.15,
+    "indiceRobo": "Medio",
+    "climaExtremoRiesgo": "Salinidad Costera y Vientos Fuertes",
+    "consejoLocal": "En la costa atlántica, es fundamental revisar la cláusula de cerraduras y auxilio mecánico ante la alta afluencia en temporadas de recambio turístico.",
+    "estadisticaLocal": "Presenta una variación estacional marcada con incremento de tránsito entre diciembre y marzo."
+  },
+  {
+    "slug": "san-miguel-de-tucuman",
+    "nombre": "San Miguel de Tucumán",
+    "provincia": "Tucumán",
+    "factorRiesgoUrbano": 1.22,
+    "indiceRobo": "Medio-Alto",
+    "climaExtremoRiesgo": "Tormentas Tropicales Estivales",
+    "consejoLocal": "En Tucumán, el tráfico intenso en avenidas céntricas aconseja asegurar amparos contra daños a terceros con franquicias moderadas.",
+    "estadisticaLocal": "Alta concentración de motovehículos y utilitarios comerciales en zonas periféricas."
+  },
+  {
+    "slug": "salta",
+    "nombre": "Salta Capital",
+    "provincia": "Salta",
+    "factorRiesgoUrbano": 1.08,
+    "indiceRobo": "Bajo-Medio",
+    "climaExtremoRiesgo": "Lluvias Torrenciales de Verano",
+    "consejoLocal": "En el Valle de Lerma, la siniestralidad por robo es comparativamente baja, lo que permite contratar coberturas Todo Riesgo a precios muy convenientes.",
+    "estadisticaLocal": "Bajo índice de siniestros graves en cascos históricos y preferencia por autos compactos."
+  },
+  {
+    "slug": "santa-fe",
+    "nombre": "Santa Fe Capital",
+    "provincia": "Santa Fe",
+    "factorRiesgoUrbano": 1.16,
+    "indiceRobo": "Medio-Alto",
+    "climaExtremoRiesgo": "Crecidas Ribereñas y Humedad",
+    "consejoLocal": "Revisar la cobertura de daños por anegamiento e inundación de motor por proximidad a la cuenca fluvial.",
+    "estadisticaLocal": "Parque automotor con predominio de vehículos de uso mixto urbano y rural."
+  },
+  {
+    "slug": "san-juan",
+    "nombre": "San Juan Capital",
+    "provincia": "San Juan",
+    "factorRiesgoUrbano": 1.05,
+    "indiceRobo": "Bajo-Medio",
+    "climaExtremoRiesgo": "Viento Zonda y Sequía",
+    "consejoLocal": "Las ráfagas cálidas de Zonda causan desprendimientos de ramas; la cobertura contra rotura de parabrisas y ópticas es indispensable.",
+    "estadisticaLocal": "Tasa de robo vehicular entre las más bajas de los centros urbanos de Cuyo."
+  },
+  {
+    "slug": "neuquen",
+    "nombre": "Neuquén Capital",
+    "provincia": "Neuquén",
+    "factorRiesgoUrbano": 1.14,
+    "indiceRobo": "Medio",
+    "climaExtremoRiesgo": "Vientos Patagónicos y Ripio",
+    "consejoLocal": "El tránsito en rutas de la cuenca petrolera y caminos de ripio exige asegurar rotura de cristales y cerraduras sin franquicia.",
+    "estadisticaLocal": "Predominio de pick-ups 4x4 y SUVs con mayor valor de reposición de repuestos."
+  },
+  {
+    "slug": "bariloche",
+    "nombre": "San Carlos de Bariloche",
+    "provincia": "Río Negro",
+    "factorRiesgoUrbano": 1.06,
+    "indiceRobo": "Bajo",
+    "climaExtremoRiesgo": "Nieve, Hielo en Calzada y Viento Blanco",
+    "consejoLocal": "En la cordillera, los despistes por hielo y congelamiento de fluidos hacen prioritaria la cobertura de remolque sin límite de kilómetros.",
+    "estadisticaLocal": "Mínima incidencia de robo pero alta frecuencia de reclamos menores por maniobras en pendientes y nieve."
+  },
+  {
+    "slug": "bahia-blanca",
+    "nombre": "Bahía Blanca",
+    "provincia": "Buenos Aires",
+    "factorRiesgoUrbano": 1.12,
+    "indiceRobo": "Medio",
+    "climaExtremoRiesgo": "Vientos Fuertes del Sudoeste",
+    "consejoLocal": "El nodo portuario e industrial presenta flujo constante de transporte pesado; se recomienda elevar la suma asegurada de Responsabilidad Civil.",
+    "estadisticaLocal": "Amplia proporción de vehículos medianos y utilitarios de trabajo."
+  },
+  {
+    "slug": "corrientes",
+    "nombre": "Corrientes Capital",
+    "provincia": "Corrientes",
+    "factorRiesgoUrbano": 1.10,
+    "indiceRobo": "Medio",
+    "climaExtremoRiesgo": "Tormentas Subtropicales y Granizo",
+    "consejoLocal": "En el Litoral, verificar el amparo ante anegamiento por lluvias repentinas y protección de cerrajería.",
+    "estadisticaLocal": "Mayor porcentaje de contratación de pólizas de Terceros Básico y Completo."
+  },
+  {
+    "slug": "posadas",
+    "nombre": "Posadas",
+    "provincia": "Misiones",
+    "factorRiesgoUrbano": 1.09,
+    "indiceRobo": "Bajo-Medio",
+    "climaExtremoRiesgo": "Lluvias Intensas y Humedad",
+    "consejoLocal": "En la frontera, es fundamental verificar la validez de la carta verde del seguro para circular en países limítrofes (Mercosur).",
+    "estadisticaLocal": "Alta frecuencia de viajes transfronterizos y uso interurbano por rutas provinciales."
   }
 ]

@@ -22,6 +22,9 @@ jobs:
       - name: Instalar Dependencias
         run: npm ci
 
+      - name: Ejecutar Pruebas Automatizadas de Consistencia Actuarial
+        run: npm test
+
       - name: Compilar y Exportar Sitio Estático (SSG)
         run: npm run build
 
