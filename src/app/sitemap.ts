@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next';
 import { getCiudades, getPerfiles } from '@/lib/data';
 import { TipoSeguro } from '@/types';
+import { SITE_URL } from '@/lib/constants';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://simulador-seguros.vercel.app';
+  const baseUrl = SITE_URL.replace(/\/$/, '');
   const currentDate = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [

@@ -6,6 +6,7 @@ const tarifas = JSON.parse(fs.readFileSync(path.resolve('./data/tarifas-base.jso
 const factores = JSON.parse(fs.readFileSync(path.resolve('./data/factores-riesgo.json'), 'utf-8'));
 const ciudades = JSON.parse(fs.readFileSync(path.resolve('./data/ciudades.json'), 'utf-8'));
 const perfiles = JSON.parse(fs.readFileSync(path.resolve('./data/perfiles.json'), 'utf-8'));
+const robotsTxt = fs.readFileSync(path.resolve('./public/robots.txt'), 'utf-8');
 
 console.log('🧪 Iniciando Suite de Pruebas Automatizadas de Consistencia Actuarial y Contenido...\n');
 
@@ -22,11 +23,12 @@ function assert(condition, message) {
   }
 }
 
-// 1. Validar integridad de datos
-assert(ciudades.length >= 5, `Al menos 5 ciudades cargadas (Actual: ${ciudades.length})`);
+// 1. Validar integridad de datos y configuración
+assert(ciudades.length >= 15, `Al menos 15 ciudades cargadas (Actual: ${ciudades.length})`);
 assert(perfiles.length >= 4, `Al menos 4 perfiles cargados (Actual: ${perfiles.length})`);
 assert(tarifas.auto && tarifas.hogar, 'Tarifas base presentes para Auto y Hogar');
 assert(factores.auto && factores.hogar, 'Factores presentes para Auto y Hogar');
+assert(robotsTxt.includes('https://simulador-seguros-argentina.vercel.app/sitemap.xml'), 'public/robots.txt apunta al dominio correcto (simulador-seguros-argentina.vercel.app)');
 
 // 2. Probar consistencia de cálculo en todas las ciudades y perfiles para AUTO
 console.log('\n🚗 Verificando consistencia en pólizas de Automóvil...');

@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/constants';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://simulador-seguros.vercel.app';
+  const baseUrl = SITE_URL.replace(/\/$/, '');
 
   return {
     rules: {

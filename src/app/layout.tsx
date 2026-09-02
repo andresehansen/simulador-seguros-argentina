@@ -4,12 +4,13 @@ import './globals.css';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
 import { DisclaimerBanner } from '@/components/common/DisclaimerBanner';
+import { SITE_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Simulador de Seguros Argentina | Cotizador Interactivo de Coberturas y Tarifas',
   description:
     'Simulá y compará el costo estimado de seguros de automóvil y hogar según tu ciudad, edad y perfil de riesgo. Herramienta gratuita e informativa.',
-  metadataBase: new URL('https://simulador-seguros.vercel.app'),
+  metadataBase: new URL(SITE_URL),
 };
 
 export default function RootLayout({

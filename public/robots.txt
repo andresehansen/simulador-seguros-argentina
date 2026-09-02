@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://simulador-seguros.vercel.app/sitemap.xml
+Sitemap: https://simulador-seguros-argentina.vercel.app/sitemap.xml
