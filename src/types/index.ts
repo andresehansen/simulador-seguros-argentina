@@ -20,8 +20,7 @@ export interface RangoEdadItem {
   min: number;
   max: number;
   multiplicador: number;
-  etiquetaAuto: string;
-  etiquetaHogar: string;
+  etiqueta: string;
   impacto: string;
 }
 
@@ -29,33 +28,53 @@ export interface AntiguedadLicenciaItem {
   min: number;
   max: number;
   multiplicador: number;
-  etiquetaAuto: string;
-  etiquetaHogar: string;
+  etiqueta: string;
+  impacto: string;
+}
+
+export interface OpcionSelectorItem {
+  id: string;
+  nombre: string;
+  multiplicador: number;
+  etiqueta: string;
+  impacto: string;
+}
+
+export interface AntiguedadRangoItem {
+  min: number;
+  max: number;
+  multiplicador: number;
+  etiqueta: string;
   impacto: string;
 }
 
 export interface HistorialSiniestrosItem {
   id: string;
   multiplicador: number;
-  etiquetaAuto: string;
-  etiquetaHogar: string;
+  etiqueta: string;
   impacto: string;
 }
 
-export interface AntiguedadBienItem {
-  min: number;
-  max: number;
-  multiplicador: number;
-  etiquetaAuto: string;
-  etiquetaHogar: string;
-  impacto: string;
+export interface FactoresAuto {
+  rangoEdad: RangoEdadItem[];
+  antiguedadLicenciaAnios: AntiguedadLicenciaItem[];
+  segmentoVehiculo: OpcionSelectorItem[];
+  guardaHabitual: OpcionSelectorItem[];
+  antiguedadVehiculoAnios: AntiguedadRangoItem[];
+  historialSiniestros: HistorialSiniestrosItem[];
+}
+
+export interface FactoresHogar {
+  tipoPropiedad: OpcionSelectorItem[];
+  superficieM2: OpcionSelectorItem[];
+  medidasSeguridad: OpcionSelectorItem[];
+  antiguedadInmuebleAnios: AntiguedadRangoItem[];
+  historialSiniestros: HistorialSiniestrosItem[];
 }
 
 export interface FactoresRiesgo {
-  rangoEdad: RangoEdadItem[];
-  antiguedadLicenciaAnios: AntiguedadLicenciaItem[];
-  historialSiniestros: HistorialSiniestrosItem[];
-  antiguedadBienAnios: AntiguedadBienItem[];
+  auto: FactoresAuto;
+  hogar: FactoresHogar;
 }
 
 export interface CiudadItem {
@@ -82,11 +101,19 @@ export interface PerfilItem {
 
 export interface CalculationInput {
   tipoSeguro: TipoSeguro;
-  edad: number;
-  antiguedadLicenciaAnios: number;
-  historialSiniestros: string;
-  antiguedadVehiculoAnios: number;
   ciudadSlug: string;
+  // Variables Auto
+  edad?: number;
+  antiguedadLicenciaAnios?: number;
+  segmentoVehiculo?: string;
+  guardaHabitual?: string;
+  antiguedadVehiculoAnios?: number;
+  historialSiniestros?: string;
+  // Variables Hogar
+  tipoPropiedad?: string;
+  superficieM2?: string;
+  medidasSeguridad?: string;
+  antiguedadInmuebleAnios?: number;
 }
 
 export interface FactorImpact {

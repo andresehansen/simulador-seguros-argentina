@@ -1,111 +1,281 @@
 {
-  "rangoEdad": [
-    {
-      "min": 18,
-      "max": 24,
-      "multiplicador": 1.65,
-      "etiquetaAuto": "Joven / Tramo estadístico de mayor siniestralidad",
-      "etiquetaHogar": "Titular Joven / Primer inmueble",
-      "impacto": "Alto (+65%)"
-    },
-    {
-      "min": 25,
-      "max": 35,
-      "multiplicador": 1.20,
-      "etiquetaAuto": "Adulto Joven",
-      "etiquetaHogar": "Adulto Joven / Consolidación habitacional",
-      "impacto": "Moderado (+20%)"
-    },
-    {
-      "min": 36,
-      "max": 60,
-      "multiplicador": 1.00,
-      "etiquetaAuto": "Riesgo Estándar de Referencia",
-      "etiquetaHogar": "Riesgo Estándar de Referencia",
-      "impacto": "Base (0%)"
-    },
-    {
-      "min": 61,
-      "max": 85,
-      "multiplicador": 1.30,
-      "etiquetaAuto": "Conductor Senior",
-      "etiquetaHogar": "Titular Senior / Mayor permanencia en el hogar",
-      "impacto": "Moderado (+30%)"
-    }
-  ],
-  "antiguedadLicenciaAnios": [
-    {
-      "min": 0,
-      "max": 1,
-      "multiplicador": 1.40,
-      "etiquetaAuto": "Menos de 2 años de experiencia (Principiante)",
-      "etiquetaHogar": "Primer año de radicación en la propiedad",
-      "impacto": "Alto (+40%)"
-    },
-    {
-      "min": 2,
-      "max": 5,
-      "multiplicador": 1.15,
-      "etiquetaAuto": "Experiencia Intermedia (2 a 5 años)",
-      "etiquetaHogar": "Residencia intermedia (2 a 5 años)",
-      "impacto": "Bajo (+15%)"
-    },
-    {
-      "min": 6,
-      "max": 99,
-      "multiplicador": 1.00,
-      "etiquetaAuto": "Experiencia Consolidada (+6 años)",
-      "etiquetaHogar": "Residencia permanente y consolidada (+6 años)",
-      "impacto": "Base (0%)"
-    }
-  ],
-  "historialSiniestros": [
-    {
-      "id": "cero",
-      "multiplicador": 0.85,
-      "etiquetaAuto": "Sin siniestros viales en los últimos 3 años (Bonificación)",
-      "etiquetaHogar": "Sin reclamos en el hogar en los últimos 3 años (Bonificación)",
-      "impacto": "Descuento (-15%)"
-    },
-    {
-      "id": "uno",
-      "multiplicador": 1.15,
-      "etiquetaAuto": "1 siniestro menor reportado",
-      "etiquetaHogar": "1 reclamo menor en la vivienda",
-      "impacto": "Moderado (+15%)"
-    },
-    {
-      "id": "dos_o_mas",
-      "multiplicador": 1.60,
-      "etiquetaAuto": "2 o más siniestros registrados",
-      "etiquetaHogar": "2 o más reclamos en la vivienda",
-      "impacto": "Alto (+60%)"
-    }
-  ],
-  "antiguedadBienAnios": [
-    {
-      "min": 0,
-      "max": 2,
-      "multiplicador": 1.25,
-      "etiquetaAuto": "Vehículo 0 km o Reciente (Alto costo de repuestos)",
-      "etiquetaHogar": "Inmueble a estrenar o reciente (Instalaciones y terminaciones nuevas)",
-      "impacto": "Moderado (+25%)"
-    },
-    {
-      "min": 3,
-      "max": 10,
-      "multiplicador": 1.00,
-      "etiquetaAuto": "Antigüedad Estándar (3 a 10 años)",
-      "etiquetaHogar": "Antigüedad Estándar (3 a 10 años)",
-      "impacto": "Base (0%)"
-    },
-    {
-      "min": 11,
-      "max": 30,
-      "multiplicador": 1.35,
-      "etiquetaAuto": "Vehículo de más de 10 años (Recargo por repuestos y asistencia)",
-      "etiquetaHogar": "Inmueble de más de 10 años (Mayor desgaste de cañerías e instalaciones eléctricas)",
-      "impacto": "Alto (+35%)"
-    }
-  ]
+  "auto": {
+    "rangoEdad": [
+      {
+        "min": 18,
+        "max": 24,
+        "multiplicador": 1.65,
+        "etiqueta": "Joven / Tramo estadístico de mayor siniestralidad",
+        "impacto": "Alto (+65%)"
+      },
+      {
+        "min": 25,
+        "max": 35,
+        "multiplicador": 1.20,
+        "etiqueta": "Adulto Joven",
+        "impacto": "Moderado (+20%)"
+      },
+      {
+        "min": 36,
+        "max": 60,
+        "multiplicador": 1.00,
+        "etiqueta": "Riesgo Estándar de Referencia",
+        "impacto": "Base (0%)"
+      },
+      {
+        "min": 61,
+        "max": 85,
+        "multiplicador": 1.30,
+        "etiqueta": "Conductor Senior",
+        "impacto": "Moderado (+30%)"
+      }
+    ],
+    "antiguedadLicenciaAnios": [
+      {
+        "min": 0,
+        "max": 1,
+        "multiplicador": 1.40,
+        "etiqueta": "Menos de 2 años de experiencia (Principiante)",
+        "impacto": "Alto (+40%)"
+      },
+      {
+        "min": 2,
+        "max": 5,
+        "multiplicador": 1.15,
+        "etiqueta": "Experiencia Intermedia (2 a 5 años)",
+        "impacto": "Bajo (+15%)"
+      },
+      {
+        "min": 6,
+        "max": 99,
+        "multiplicador": 1.00,
+        "etiqueta": "Experiencia Consolidada (+6 años)",
+        "impacto": "Base (0%)"
+      }
+    ],
+    "segmentoVehiculo": [
+      {
+        "id": "hatchback_sedan",
+        "nombre": "Hatchback / Sedán",
+        "multiplicador": 1.00,
+        "etiqueta": "Auto Urbano Estándar",
+        "impacto": "Base (0%)"
+      },
+      {
+        "id": "suv_crossover",
+        "nombre": "SUV / Crossover",
+        "multiplicador": 1.15,
+        "etiqueta": "SUV Mediana (Repuestos y cristales más caros)",
+        "impacto": "Moderado (+15%)"
+      },
+      {
+        "id": "pickup",
+        "nombre": "Pick-up / 4x4",
+        "multiplicador": 1.30,
+        "etiqueta": "Pick-up (Alto valor asegurado y siniestralidad de ruedas)",
+        "impacto": "Alto (+30%)"
+      },
+      {
+        "id": "utilitario",
+        "nombre": "Utilitario",
+        "multiplicador": 1.25,
+        "etiqueta": "Vehículo Utilitario Ligero",
+        "impacto": "Moderado (+25%)"
+      }
+    ],
+    "guardaHabitual": [
+      {
+        "id": "cochera_privada",
+        "nombre": "Cochera Cerrada",
+        "multiplicador": 0.90,
+        "etiqueta": "Garage Privado Cubierto (Protección contra robo y granizo)",
+        "impacto": "Descuento (-10%)"
+      },
+      {
+        "id": "cochera_comunitaria",
+        "nombre": "Edificio / Estacionamiento",
+        "multiplicador": 1.00,
+        "etiqueta": "Cochera en Edificio o Cochera Comercial",
+        "impacto": "Base (0%)"
+      },
+      {
+        "id": "via_publica",
+        "nombre": "Vía Pública / Calle",
+        "multiplicador": 1.25,
+        "etiqueta": "En la Calle (Exposición constante a robos parciales y tormentas)",
+        "impacto": "Alto (+25%)"
+      }
+    ],
+    "antiguedadVehiculoAnios": [
+      {
+        "min": 0,
+        "max": 2,
+        "multiplicador": 1.25,
+        "etiqueta": "Vehículo 0 km o Reciente (Alto valor de repuestos)",
+        "impacto": "Moderado (+25%)"
+      },
+      {
+        "min": 3,
+        "max": 10,
+        "multiplicador": 1.00,
+        "etiqueta": "Antigüedad Estándar (3 a 10 años)",
+        "impacto": "Base (0%)"
+      },
+      {
+        "min": 11,
+        "max": 30,
+        "multiplicador": 1.35,
+        "etiqueta": "Vehículo de más de 10 años (Recargo por repuestos y asistencia)",
+        "impacto": "Alto (+35%)"
+      }
+    ],
+    "historialSiniestros": [
+      {
+        "id": "cero",
+        "multiplicador": 0.85,
+        "etiqueta": "Sin siniestros viales en los últimos 3 años (Bonificación)",
+        "impacto": "Descuento (-15%)"
+      },
+      {
+        "id": "uno",
+        "multiplicador": 1.15,
+        "etiqueta": "1 siniestro menor reportado",
+        "impacto": "Moderado (+15%)"
+      },
+      {
+        "id": "dos_o_mas",
+        "multiplicador": 1.60,
+        "etiqueta": "2 o más siniestros registrados",
+        "impacto": "Alto (+60%)"
+      }
+    ]
+  },
+  "hogar": {
+    "tipoPropiedad": [
+      {
+        "id": "depto_piso_alto",
+        "nombre": "Depto. Piso 2 o superior",
+        "multiplicador": 0.85,
+        "etiqueta": "Departamento en Piso Alto (Menor vulnerabilidad a intrusión)",
+        "impacto": "Descuento (-15%)"
+      },
+      {
+        "id": "depto_planta_baja",
+        "nombre": "Depto. Planta Baja",
+        "multiplicador": 1.00,
+        "etiqueta": "Departamento en PB o Primer Piso",
+        "impacto": "Base (0%)"
+      },
+      {
+        "id": "casa_urbana",
+        "nombre": "Casa / Dúplex",
+        "multiplicador": 1.20,
+        "etiqueta": "Casa Individual con acceso directo desde la calle",
+        "impacto": "Moderado (+20%)"
+      },
+      {
+        "id": "barrio_cerrado",
+        "nombre": "Country / Barrio Cerrado",
+        "multiplicador": 0.95,
+        "etiqueta": "Vivienda en Barrio Privado con Seguridad Perimetral",
+        "impacto": "Descuento (-5%)"
+      }
+    ],
+    "superficieM2": [
+      {
+        "id": "hasta_60",
+        "nombre": "Hasta 60 m² (1-2 amb)",
+        "multiplicador": 0.85,
+        "etiqueta": "Vivienda Compacta (Menor costo de reconstrucción y contenido)",
+        "impacto": "Descuento (-15%)"
+      },
+      {
+        "id": "60_120",
+        "nombre": "60 a 120 m² (3-4 amb)",
+        "multiplicador": 1.00,
+        "etiqueta": "Vivienda Estándar de Referencia",
+        "impacto": "Base (0%)"
+      },
+      {
+        "id": "120_250",
+        "nombre": "120 a 250 m² (Casa)",
+        "multiplicador": 1.35,
+        "etiqueta": "Superficie Amplia (Mayor capital de electrodomésticos y estructura)",
+        "impacto": "Alto (+35%)"
+      },
+      {
+        "id": "mas_250",
+        "nombre": "Más de 250 m²",
+        "multiplicador": 1.70,
+        "etiqueta": "Residencia de Gran Escala",
+        "impacto": "Muy Alto (+70%)"
+      }
+    ],
+    "medidasSeguridad": [
+      {
+        "id": "alarma_monitoreada",
+        "nombre": "Alarma Monitoreada / 24h",
+        "multiplicador": 0.85,
+        "etiqueta": "Sistema de Alarma Conectada a Central de Monitoreo",
+        "impacto": "Descuento (-15%)"
+      },
+      {
+        "id": "rejas_puerta_blindada",
+        "nombre": "Rejas / Puerta Blindada",
+        "multiplicador": 0.95,
+        "etiqueta": "Protección Pasiva con Rejas y Puerta de Seguridad",
+        "impacto": "Descuento (-5%)"
+      },
+      {
+        "id": "cerradura_estandar",
+        "nombre": "Cerradura Estándar",
+        "multiplicador": 1.10,
+        "etiqueta": "Vivienda sin dispositivos adicionales de seguridad",
+        "impacto": "Moderado (+10%)"
+      }
+    ],
+    "antiguedadInmuebleAnios": [
+      {
+        "min": 0,
+        "max": 2,
+        "multiplicador": 0.95,
+        "etiqueta": "A Estrenar o Construcción Reciente (Cañerías e instalaciones nuevas)",
+        "impacto": "Descuento (-5%)"
+      },
+      {
+        "min": 3,
+        "max": 15,
+        "multiplicador": 1.00,
+        "etiqueta": "Antigüedad Estándar en Buen Estado (3 a 15 años)",
+        "impacto": "Base (0%)"
+      },
+      {
+        "min": 16,
+        "max": 60,
+        "multiplicador": 1.25,
+        "etiqueta": "Inmueble de más de 15 años (Mayor desgaste de cañerías y redes eléctricas)",
+        "impacto": "Alto (+25%)"
+      }
+    ],
+    "historialSiniestros": [
+      {
+        "id": "cero",
+        "multiplicador": 0.85,
+        "etiqueta": "Sin reclamos previos en los últimos 3 años (Bonificación)",
+        "impacto": "Descuento (-15%)"
+      },
+      {
+        "id": "uno",
+        "multiplicador": 1.15,
+        "etiqueta": "1 reclamo menor en la vivienda",
+        "impacto": "Moderado (+15%)"
+      },
+      {
+        "id": "dos_o_mas",
+        "multiplicador": 1.50,
+        "etiqueta": "2 o más siniestros reportados",
+        "impacto": "Alto (+50%)"
+      }
+    ]
+  }
 }
