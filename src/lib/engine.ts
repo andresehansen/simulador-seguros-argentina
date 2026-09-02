@@ -13,6 +13,7 @@ function roundToHundreds(value: number): number {
 export function calcularCotizacion(input: CalculationInput): CalculationResult {
   const tarifasMap = getTarifasBase();
   const factores = getFactoresRiesgo();
+  const esAuto = input.tipoSeguro === 'auto';
   const tarifaBase = tarifasMap[input.tipoSeguro] || tarifasMap.auto;
 
   const ciudad = getCiudadBySlug(input.ciudadSlug) || {
@@ -29,22 +30,42 @@ export function calcularCotizacion(input: CalculationInput): CalculationResult {
   // 1. Factor Edad
   const edadMatch = factores.rangoEdad.find(
     (item) => input.edad >= item.min && input.edad <= item.max
-  ) || { multiplicador: 1.0, etiqueta: 'Edad Estándar', impacto: 'Base (0%)' };
+  ) || {
+    multiplicador: 1.0,
+    etiquetaAuto: 'Edad Estándar',
+    etiquetaHogar: 'Edad Estándar',
+    impacto: 'Base (0%)',
+  };
 
-  // 2. Factor Antigüedad Licencia
+  // 2. Factor Antigüedad Licencia / Residencia
   const licenciaMatch = factores.antiguedadLicenciaAnios.find(
     (item) => input.antiguedadLicenciaAnios >= item.min && input.antiguedadLicenciaAnios <= item.max
-  ) || { multiplicador: 1.0, etiqueta: 'Experiencia Estándar', impacto: 'Base (0%)' };
+  ) || {
+    multiplicador: 1.0,
+    etiquetaAuto: 'Experiencia Estándar',
+    etiquetaHogar: 'Residencia Estándar',
+    impacto: 'Base (0%)',
+  };
 
   // 3. Factor Siniestros
   const siniestroMatch = factores.historialSiniestros.find(
     (item) => item.id === input.historialSiniestros
-  ) || { multiplicador: 1.0, etiqueta: 'Sin Historial Registrado', impacto: 'Base (0%)' };
+  ) || {
+    multiplicador: 1.0,
+    etiquetaAuto: 'Sin Historial Registrado',
+    etiquetaHogar: 'Sin Historial Registrado',
+    impacto: 'Base (0%)',
+  };
 
-  // 4. Factor Antigüedad Vehículo/Propiedad
-  const vehiculoMatch = factores.antiguedadVehiculoAnios.find(
+  // 4. Factor Antigüedad del Bien (Vehículo vs Inmueble)
+  const bienMatch = factores.antiguedadBienAnios.find(
     (item) => input.antiguedadVehiculoAnios >= item.min && input.antiguedadVehiculoAnios <= item.max
-  ) || { multiplicador: 1.0, etiqueta: 'Antigüedad Estándar', impacto: 'Base (0%)' };
+  ) || {
+    multiplicador: 1.0,
+    etiquetaAuto: 'Antigüedad Estándar',
+    etiquetaHogar: 'Antigüedad Estándar',
+    impacto: 'Base (0%)',
+  };
 
   // 5. Factor Ubicación Urbana
   const factorUbicacion = ciudad.factorRiesgoUrbano;
@@ -53,40 +74,40 @@ export function calcularCotizacion(input: CalculationInput): CalculationResult {
     edadMatch.multiplicador *
     licenciaMatch.multiplicador *
     siniestroMatch.multiplicador *
-    vehiculoMatch.multiplicador *
+    bienMatch.multiplicador *
     factorUbicacion;
 
   const desgloseFactores: FactorImpact[] = [
     {
-      nombreFactor: 'Tramo de Edad',
+      nombreFactor: esAuto ? 'Tramo de Edad (Conductor)' : 'Tramo de Edad (Titular)',
       multiplicador: edadMatch.multiplicador,
       porcentajeVariacion: Math.round((edadMatch.multiplicador - 1) * 100),
-      etiqueta: edadMatch.etiqueta,
+      etiqueta: esAuto ? edadMatch.etiquetaAuto : edadMatch.etiquetaHogar,
       impactoTexto: edadMatch.impacto,
     },
     {
-      nombreFactor: 'Experiencia de Licencia',
+      nombreFactor: esAuto ? 'Experiencia con Licencia' : 'Antigüedad de Radicación',
       multiplicador: licenciaMatch.multiplicador,
       porcentajeVariacion: Math.round((licenciaMatch.multiplicador - 1) * 100),
-      etiqueta: licenciaMatch.etiqueta,
+      etiqueta: esAuto ? licenciaMatch.etiquetaAuto : licenciaMatch.etiquetaHogar,
       impactoTexto: licenciaMatch.impacto,
     },
     {
-      nombreFactor: 'Historial de Siniestros',
+      nombreFactor: esAuto ? 'Historial de Siniestros Viales' : 'Historial de Reclamos en Hogar',
       multiplicador: siniestroMatch.multiplicador,
       porcentajeVariacion: Math.round((siniestroMatch.multiplicador - 1) * 100),
-      etiqueta: siniestroMatch.etiqueta,
+      etiqueta: esAuto ? siniestroMatch.etiquetaAuto : siniestroMatch.etiquetaHogar,
       impactoTexto: siniestroMatch.impacto,
     },
     {
-      nombreFactor: 'Antigüedad del Bien',
-      multiplicador: vehiculoMatch.multiplicador,
-      porcentajeVariacion: Math.round((vehiculoMatch.multiplicador - 1) * 100),
-      etiqueta: vehiculoMatch.etiqueta,
-      impactoTexto: vehiculoMatch.impacto,
+      nombreFactor: esAuto ? 'Antigüedad del Vehículo' : 'Antigüedad del Inmueble',
+      multiplicador: bienMatch.multiplicador,
+      porcentajeVariacion: Math.round((bienMatch.multiplicador - 1) * 100),
+      etiqueta: esAuto ? bienMatch.etiquetaAuto : bienMatch.etiquetaHogar,
+      impactoTexto: bienMatch.impacto,
     },
     {
-      nombreFactor: 'Riesgo Urbano (' + ciudad.nombre + ')',
+      nombreFactor: `Riesgo Jurisdiccional (${ciudad.nombre})`,
       multiplicador: factorUbicacion,
       porcentajeVariacion: Math.round((factorUbicacion - 1) * 100),
       etiqueta: `Índice de robo ${ciudad.indiceRobo.toLowerCase()}`,

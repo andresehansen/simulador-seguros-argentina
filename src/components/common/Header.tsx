@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ShieldCheck, Calculator, BookOpen, FileText, Sparkles } from 'lucide-react';
+import { ShieldCheck, Calculator, BookOpen, FileText, Users } from 'lucide-react';
 
 export function Header() {
   return (
@@ -26,7 +26,7 @@ export function Header() {
             </div>
           </Link>
 
-          <nav className="flex items-center gap-1 sm:gap-2">
+          <nav className="flex items-center gap-1 sm:gap-1.5">
             <Link
               href="/"
               className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold text-slate-700 hover:text-brand-600 hover:bg-slate-50 transition"
@@ -37,18 +37,26 @@ export function Header() {
 
             <Link
               href="/como-calculamos"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition"
+              className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition"
             >
-              <FileText className="w-4 h-4 text-slate-400" />
+              <FileText className="w-4 h-4 text-slate-400 hidden md:inline" />
               <span>Metodología</span>
             </Link>
 
             <Link
               href="/glosario-seguros"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition"
+              className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition"
             >
-              <BookOpen className="w-4 h-4 text-slate-400" />
+              <BookOpen className="w-4 h-4 text-slate-400 hidden md:inline" />
               <span>Glosario</span>
+            </Link>
+
+            <Link
+              href="/sobre-nosotros"
+              className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs sm:text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition"
+            >
+              <Users className="w-4 h-4 text-slate-400 hidden md:inline" />
+              <span>Nosotros</span>
             </Link>
           </nav>
         </div>

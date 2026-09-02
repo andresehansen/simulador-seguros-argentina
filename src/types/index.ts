@@ -20,7 +20,8 @@ export interface RangoEdadItem {
   min: number;
   max: number;
   multiplicador: number;
-  etiqueta: string;
+  etiquetaAuto: string;
+  etiquetaHogar: string;
   impacto: string;
 }
 
@@ -28,22 +29,25 @@ export interface AntiguedadLicenciaItem {
   min: number;
   max: number;
   multiplicador: number;
-  etiqueta: string;
+  etiquetaAuto: string;
+  etiquetaHogar: string;
   impacto: string;
 }
 
 export interface HistorialSiniestrosItem {
   id: string;
   multiplicador: number;
-  etiqueta: string;
+  etiquetaAuto: string;
+  etiquetaHogar: string;
   impacto: string;
 }
 
-export interface AntiguedadVehiculoItem {
+export interface AntiguedadBienItem {
   min: number;
   max: number;
   multiplicador: number;
-  etiqueta: string;
+  etiquetaAuto: string;
+  etiquetaHogar: string;
   impacto: string;
 }
 
@@ -51,7 +55,7 @@ export interface FactoresRiesgo {
   rangoEdad: RangoEdadItem[];
   antiguedadLicenciaAnios: AntiguedadLicenciaItem[];
   historialSiniestros: HistorialSiniestrosItem[];
-  antiguedadVehiculoAnios: AntiguedadVehiculoItem[];
+  antiguedadBienAnios: AntiguedadBienItem[];
 }
 
 export interface CiudadItem {

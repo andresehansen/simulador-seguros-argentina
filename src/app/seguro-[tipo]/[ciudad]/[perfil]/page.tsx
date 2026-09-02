@@ -9,7 +9,7 @@ import { FactorBreakdown } from '@/components/calculator/FactorBreakdown';
 import { AdSlot } from '@/components/common/AdSlot';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { TipoSeguro } from '@/types';
-import { MapPin, UserCheck, HelpCircle, CheckCircle2, ChevronRight, Calculator, AlertCircle, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
+import { MapPin, UserCheck, HelpCircle, CheckCircle2, ChevronRight, Calculator, AlertCircle, ArrowRight, ShieldCheck, FileText } from 'lucide-react';
 
 interface PageProps {
   params: {
@@ -64,7 +64,7 @@ export default function LongTailInsurancePage({ params }: PageProps) {
     notFound();
   }
 
-  const { result, faqs, tipoNombre } = generateLongTailData(tipo, ciudad, perfil);
+  const { result, faqs, tipoNombre, analisisPerfilCiudad } = generateLongTailData(tipo, ciudad, perfil);
   const todasLasCiudades = getCiudades();
   const todosLosPerfiles = getPerfiles();
 
@@ -111,6 +111,21 @@ export default function LongTailInsurancePage({ params }: PageProps) {
 
         {/* Top AdSlot */}
         <AdSlot slotId="longtail-top-slot" label="Anuncio de Coberturas" className="my-8" />
+
+        {/* Análisis Actuarial Específico Profundo (Anti-Thin Content) */}
+        <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm mb-8">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="p-1.5 rounded-lg bg-brand-50 text-brand-600">
+              <FileText className="w-5 h-5" />
+            </div>
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900">
+              Dictamen de Riesgo Actuarial para esta Jurisdicción
+            </h2>
+          </div>
+          <p className="text-sm text-slate-700 leading-relaxed">
+            {analisisPerfilCiudad}
+          </p>
+        </section>
 
         {/* Resultados Estimados y Desglose */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start my-8">
@@ -209,15 +224,19 @@ export default function LongTailInsurancePage({ params }: PageProps) {
               </thead>
               <tbody className="divide-y divide-slate-100 bg-white">
                 <tr className="hover:bg-slate-50/50 transition-colors">
-                  <td className="p-4 font-semibold text-slate-800">Edad del Conductor</td>
+                  <td className="p-4 font-semibold text-slate-800">
+                    {tipo === 'auto' ? 'Edad del Conductor' : 'Edad del Titular'}
+                  </td>
                   <td className="p-4 font-medium text-slate-600">{perfil.edad} años</td>
                   <td className="p-4 text-slate-700 font-bold">
                     {result.desgloseFactores[0]?.impactoTexto || 'Estándar'}
                   </td>
                 </tr>
                 <tr className="hover:bg-slate-50/50 transition-colors">
-                  <td className="p-4 font-semibold text-slate-800">Experiencia de Licencia</td>
-                  <td className="p-4 font-medium text-slate-600">{perfil.antiguedadLicenciaAnios} años con carnet</td>
+                  <td className="p-4 font-semibold text-slate-800">
+                    {tipo === 'auto' ? 'Experiencia de Licencia' : 'Antigüedad en la Propiedad'}
+                  </td>
+                  <td className="p-4 font-medium text-slate-600">{perfil.antiguedadLicenciaAnios} años</td>
                   <td className="p-4 text-slate-700 font-bold">
                     {result.desgloseFactores[1]?.impactoTexto || 'Estándar'}
                   </td>
@@ -230,8 +249,10 @@ export default function LongTailInsurancePage({ params }: PageProps) {
                   </td>
                 </tr>
                 <tr className="hover:bg-slate-50/50 transition-colors">
-                  <td className="p-4 font-semibold text-slate-800">Historial de Siniestralidad</td>
-                  <td className="p-4 font-medium text-slate-600">Sin siniestros en 3 años</td>
+                  <td className="p-4 font-semibold text-slate-800">
+                    {tipo === 'auto' ? 'Historial de Siniestralidad Vial' : 'Historial de Reclamos en Hogar'}
+                  </td>
+                  <td className="p-4 font-medium text-slate-600">Sin antecedentes en 3 años</td>
                   <td className="p-4 text-emerald-600 font-black">Bonificación aplicada (-15%)</td>
                 </tr>
               </tbody>
