@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   description:
     'Simulá y compará el costo estimado de seguros de automóvil y hogar según tu ciudad, edad y perfil de riesgo. Herramienta gratuita e informativa.',
   metadataBase: new URL(SITE_URL),
+  verification: {
+    google: 'qE3U_9D_mpq0vEvR5RprNl1_od8fbP91a9BBizuK_es',
+  },
 };
 
 export default function RootLayout({
