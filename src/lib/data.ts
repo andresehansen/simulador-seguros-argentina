@@ -8,6 +8,8 @@ import {
   FactoresRiesgo,
   CiudadItem,
   PerfilItem,
+  PerfilesData,
+  TipoSeguro,
 } from '@/types';
 
 export function getTarifasBase(): TarifasBaseMap {
@@ -22,14 +24,18 @@ export function getCiudades(): CiudadItem[] {
   return ciudadesData as CiudadItem[];
 }
 
-export function getPerfiles(): PerfilItem[] {
-  return perfilesData as PerfilItem[];
+export function getPerfiles(tipo?: TipoSeguro): PerfilItem[] {
+  const data = perfilesData as PerfilesData;
+  if (tipo === 'auto') return data.auto;
+  if (tipo === 'hogar') return data.hogar;
+  return [...data.auto, ...data.hogar];
 }
 
 export function getCiudadBySlug(slug: string): CiudadItem | undefined {
   return getCiudades().find((c) => c.slug.toLowerCase() === slug.toLowerCase());
 }
 
-export function getPerfilBySlug(slug: string): PerfilItem | undefined {
-  return getPerfiles().find((p) => p.slug.toLowerCase() === slug.toLowerCase());
+export function getPerfilBySlug(slug: string, tipo?: TipoSeguro): PerfilItem | undefined {
+  const perfiles = getPerfiles(tipo);
+  return perfiles.find((p) => p.slug.toLowerCase() === slug.toLowerCase());
 }

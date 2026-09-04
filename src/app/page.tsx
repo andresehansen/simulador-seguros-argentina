@@ -3,50 +3,45 @@ import Link from 'next/link';
 import { InteractiveCalculator } from '@/components/calculator/InteractiveCalculator';
 import { AdSlot } from '@/components/common/AdSlot';
 import { getCiudades, getPerfiles } from '@/lib/data';
-import { ShieldCheck, TrendingDown, BookOpen, MapPin, Sparkles, CheckCircle, ArrowRight, Lock, Zap } from 'lucide-react';
+import {
+  ShieldCheck,
+  TrendingDown,
+  BookOpen,
+  ArrowRight,
+  MapPin,
+  Car,
+  Home,
+  Sliders,
+  CheckCircle2,
+} from 'lucide-react';
 
 export default function HomePage() {
   const ciudades = getCiudades();
-  const perfiles = getPerfiles();
+  const perfilesAuto = getPerfiles('auto');
+  const perfilesHogar = getPerfiles('hogar');
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-14">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       {/* Hero Section */}
-      <section className="text-center max-w-3xl mx-auto mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-50 text-brand-700 border border-brand-200/80 mb-5 shadow-sm">
-          <Sparkles className="w-3.5 h-3.5 text-brand-600" />
-          <span>Simulador Actuarial Abierto · Tarifas Actualizadas</span>
+      <section className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-50 text-brand-700 border border-brand-200/80 mb-6 shadow-sm">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Actualizado 2026 · Tarifas de Referencia Argentina</span>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.15]">
-          Simulador de Seguros en <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-sky-500">Argentina</span>
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
+          Simulador de Seguros <span className="text-brand-600">Argentina</span>
         </h1>
 
-        <p className="mt-5 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-          Estimá tu póliza de auto u hogar en tiempo real. Descubrí con total transparencia matemática qué factores aumentan o bonifican tu cuota mensual.
+        <p className="mt-4 sm:mt-6 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          Estimá el costo mensual de tu cobertura de <strong>Automóvil</strong> o <strong>Hogar</strong> según tu perfil demográfico, ubicación geográfica y factores de riesgo actuarial.
         </p>
-
-        {/* Feature Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-6 text-xs text-slate-500 font-medium">
-          <div className="flex items-center gap-1.5">
-            <Zap className="w-4 h-4 text-amber-500" />
-            <span>Resultado Instantáneo</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Lock className="w-4 h-4 text-emerald-500" />
-            <span>100% Anónimo (Sin Datos Personales)</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <CheckCircle className="w-4 h-4 text-brand-500" />
-            <span>Cálculo Multi-factor</span>
-          </div>
-        </div>
       </section>
 
       {/* Top Banner AdSlot */}
-      <AdSlot slotId="home-top-banner" label="Anuncio Superior" className="max-w-4xl mx-auto mb-10" />
+      <AdSlot slotId="home-top-leaderboard" label="Anuncio de Seguros" className="mb-12" />
 
-      {/* Calculadora Interactiva Principal */}
+      {/* Interactive Engine Component */}
       <div className="mb-20">
         <InteractiveCalculator />
       </div>
@@ -62,7 +57,7 @@ export default function HomePage() {
             Directorio Actuarial Regional
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-            Cotizaciones por Ciudad y Perfil de Conductor
+            Cotizaciones por Ciudad, Vehículo y Vivienda
           </h2>
           <p className="text-sm text-slate-600 mt-2">
             Explorá informes actuariales individualizados con estadísticas locales de siniestralidad, índices de robo y factores específicos para cada perfil:
@@ -90,17 +85,44 @@ export default function HomePage() {
                 <span>(Factor {ciudad.factorRiesgoUrbano}x)</span>
               </p>
 
-              <div className="space-y-2 border-t border-slate-100 pt-3">
-                {perfiles.map((perfil) => (
-                  <Link
-                    key={perfil.slug}
-                    href={`/seguro-auto/${ciudad.slug}/${perfil.slug}`}
-                    className="flex items-center justify-between text-xs font-medium text-slate-600 hover:text-brand-600 py-1 transition-colors group/link"
-                  >
-                    <span className="truncate pr-2">Seguro Auto: {perfil.nombre}</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-slate-300 group-hover/link:text-brand-600 group-hover/link:translate-x-0.5 transition-all flex-shrink-0" />
-                  </Link>
-                ))}
+              {/* Subsección Auto */}
+              <div className="border-t border-slate-100 pt-3 mb-3">
+                <div className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                  <Car className="w-3.5 h-3.5 text-brand-600" />
+                  Seguro Automotor
+                </div>
+                <div className="space-y-1">
+                  {perfilesAuto.map((perfil) => (
+                    <Link
+                      key={perfil.slug}
+                      href={`/seguro-auto/${ciudad.slug}/${perfil.slug}`}
+                      className="flex items-center justify-between text-xs font-medium text-slate-600 hover:text-brand-600 py-0.5 transition-colors group/link"
+                    >
+                      <span className="truncate pr-2">{perfil.nombre}</span>
+                      <ArrowRight className="w-3 h-3 text-slate-300 group-hover/link:text-brand-600 transition-all flex-shrink-0" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Subsección Hogar */}
+              <div className="border-t border-slate-100 pt-3">
+                <div className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                  <Home className="w-3.5 h-3.5 text-brand-600" />
+                  Seguro de Hogar
+                </div>
+                <div className="space-y-1">
+                  {perfilesHogar.map((perfil) => (
+                    <Link
+                      key={perfil.slug}
+                      href={`/seguro-hogar/${ciudad.slug}/${perfil.slug}`}
+                      className="flex items-center justify-between text-xs font-medium text-slate-600 hover:text-brand-600 py-0.5 transition-colors group/link"
+                    >
+                      <span className="truncate pr-2">{perfil.nombre}</span>
+                      <ArrowRight className="w-3 h-3 text-slate-300 group-hover/link:text-brand-600 transition-all flex-shrink-0" />
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
@@ -149,7 +171,7 @@ export default function HomePage() {
           </div>
           <h3 className="font-bold text-lg text-slate-900 mb-2">Glosario Asegurador</h3>
           <p className="text-xs text-slate-600 leading-relaxed mb-5">
-            ¿No sabés qué significa franquicia, prima pura, reposición a nuevo o cláusula de destrucción total? Consultá nuestro diccionario técnico simplificado.
+            ¿No sabés qué significa franquicia, prima pura, continente vs contenido o destrucción total? Consultá nuestro diccionario técnico simplificado con secciones de Auto y Hogar.
           </p>
           <Link
             href="/glosario-seguros"

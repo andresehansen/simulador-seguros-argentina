@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next';
 import { getCiudades, getPerfiles } from '@/lib/data';
-import { TipoSeguro } from '@/types';
 import { SITE_URL } from '@/lib/constants';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -34,22 +33,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const tipos: TipoSeguro[] = ['auto', 'hogar'];
   const ciudades = getCiudades();
-  const perfiles = getPerfiles();
+  const perfilesAuto = getPerfiles('auto');
+  const perfilesHogar = getPerfiles('hogar');
 
   const programmaticRoutes: MetadataRoute.Sitemap = [];
 
-  for (const tipo of tipos) {
-    for (const ciudad of ciudades) {
-      for (const perfil of perfiles) {
-        programmaticRoutes.push({
-          url: `${baseUrl}/seguro-${tipo}/${ciudad.slug}/${perfil.slug}`,
-          lastModified: currentDate,
-          changeFrequency: 'weekly',
-          priority: 0.9,
-        });
-      }
+  for (const ciudad of ciudades) {
+    for (const perfil of perfilesAuto) {
+      programmaticRoutes.push({
+        url: `${baseUrl}/seguro-auto/${ciudad.slug}/${perfil.slug}`,
+        lastModified: currentDate,
+        changeFrequency: 'weekly',
+        priority: 0.9,
+      });
+    }
+    for (const perfil of perfilesHogar) {
+      programmaticRoutes.push({
+        url: `${baseUrl}/seguro-hogar/${ciudad.slug}/${perfil.slug}`,
+        lastModified: currentDate,
+        changeFrequency: 'weekly',
+        priority: 0.9,
+      });
     }
   }
 

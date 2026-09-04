@@ -9,7 +9,17 @@ import { FactorBreakdown } from '@/components/calculator/FactorBreakdown';
 import { AdSlot } from '@/components/common/AdSlot';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { TipoSeguro } from '@/types';
-import { MapPin, UserCheck, HelpCircle, CheckCircle2, ChevronRight, Calculator, AlertCircle, ArrowRight, ShieldCheck, FileText } from 'lucide-react';
+import {
+  MapPin,
+  UserCheck,
+  HelpCircle,
+  CheckCircle2,
+  ChevronRight,
+  Calculator,
+  ArrowRight,
+  ShieldCheck,
+  FileText,
+} from 'lucide-react';
 
 interface PageProps {
   params: {
@@ -20,31 +30,40 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  const tipos: TipoSeguro[] = ['auto', 'hogar'];
   const ciudades = getCiudades();
-  const perfiles = getPerfiles();
+  const perfilesAuto = getPerfiles('auto');
+  const perfilesHogar = getPerfiles('hogar');
 
   const paths: { tipo: string; ciudad: string; perfil: string }[] = [];
 
-  for (const tipo of tipos) {
-    for (const ciudad of ciudades) {
-      for (const perfil of perfiles) {
-        paths.push({
-          tipo,
-          ciudad: ciudad.slug,
-          perfil: perfil.slug,
-        });
-      }
+  for (const ciudad of ciudades) {
+    for (const perfil of perfilesAuto) {
+      paths.push({
+        tipo: 'seguro-auto',
+        ciudad: ciudad.slug,
+        perfil: perfil.slug,
+      });
+    }
+    for (const perfil of perfilesHogar) {
+      paths.push({
+        tipo: 'seguro-hogar',
+        ciudad: ciudad.slug,
+        perfil: perfil.slug,
+      });
     }
   }
 
   return paths;
 }
 
+function parseTipo(tipoParam: string): TipoSeguro {
+  return tipoParam?.toLowerCase().includes('hogar') ? 'hogar' : 'auto';
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const tipo = (params.tipo === 'hogar' ? 'hogar' : 'auto') as TipoSeguro;
+  const tipo = parseTipo(params.tipo);
   const ciudad = getCiudadBySlug(params.ciudad);
-  const perfil = getPerfilBySlug(params.perfil);
+  const perfil = getPerfilBySlug(params.perfil, tipo);
 
   if (!ciudad || !perfil) {
     return {
@@ -56,17 +75,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default function LongTailInsurancePage({ params }: PageProps) {
-  const tipo = (params.tipo === 'hogar' ? 'hogar' : 'auto') as TipoSeguro;
+  const tipo = parseTipo(params.tipo);
   const ciudad = getCiudadBySlug(params.ciudad);
-  const perfil = getPerfilBySlug(params.perfil);
+  const perfil = getPerfilBySlug(params.perfil, tipo);
 
   if (!ciudad || !perfil) {
     notFound();
   }
 
-  const { result, faqs, tipoNombre, analisisPerfilCiudad } = generateLongTailData(tipo, ciudad, perfil);
+  const { result, faqs, tipoNombre, analisisPerfilCiudad } = generateLongTailData(
+    tipo,
+    ciudad,
+    perfil
+  );
   const todasLasCiudades = getCiudades();
-  const todosLosPerfiles = getPerfiles();
+  const perfilesMismaVertical = getPerfiles(tipo);
 
   return (
     <>
@@ -97,22 +120,27 @@ export default function LongTailInsurancePage({ params }: PageProps) {
         <header className="mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-brand-50 text-brand-700 border border-brand-200/80 mb-4 shadow-sm">
             <MapPin className="w-3.5 h-3.5 text-brand-600" />
-            <span>Informe Actuarial Regional: {ciudad.nombre} ({ciudad.provincia})</span>
+            <span>
+              Informe Actuarial Regional: {ciudad.nombre} ({ciudad.provincia})
+            </span>
           </div>
 
           <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-            Seguro de {tipoNombre} en {ciudad.nombre} para <span className="text-brand-600">{perfil.nombre}</span>
+            Seguro de {tipoNombre} en {ciudad.nombre} para{' '}
+            <span className="text-brand-600">{perfil.nombre}</span>
           </h1>
 
           <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-4xl leading-relaxed">
-            Estimación actuarial calculada para el perfil <strong>{perfil.nombre}</strong> radicado en la jurisdicción de <strong>{ciudad.nombre}</strong>. Conocé el rango de precios proyectado por cobertura y los factores específicos de siniestralidad local.
+            Estimación actuarial calculada para el perfil <strong>{perfil.nombre}</strong> radicado
+            en la jurisdicción de <strong>{ciudad.nombre}</strong>. Conocé el rango de precios
+            proyectado por cobertura y los factores específicos de siniestralidad local.
           </p>
         </header>
 
         {/* Top AdSlot */}
         <AdSlot slotId="longtail-top-slot" label="Anuncio de Coberturas" className="my-8" />
 
-        {/* Análisis Actuarial Específico Profundo (Anti-Thin Content) */}
+        {/* Dictamen de Riesgo Actuarial Único por Combinación */}
         <section className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm mb-8">
           <div className="flex items-center gap-2 mb-3">
             <div className="p-1.5 rounded-lg bg-brand-50 text-brand-600">
@@ -122,36 +150,38 @@ export default function LongTailInsurancePage({ params }: PageProps) {
               Dictamen de Riesgo Actuarial para esta Jurisdicción
             </h2>
           </div>
-          <p className="text-sm text-slate-700 leading-relaxed">
-            {analisisPerfilCiudad}
-          </p>
+          <p className="text-sm text-slate-700 leading-relaxed">{analisisPerfilCiudad}</p>
         </section>
 
-        {/* Resultados Estimados y Desglose */}
+        {/* Resultados del Cálculo */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start my-8">
           <div className="lg:col-span-6 space-y-6">
             <EstimateSummary result={result} />
 
-            {/* Cuadro de Análisis del Contexto Urbano */}
+            {/* Estadística Local Contextual */}
             <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-7 shadow-sm">
               <div className="flex items-center gap-2 mb-3">
                 <div className="p-1.5 rounded-lg bg-brand-50 text-brand-600">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <h3 className="font-bold text-base text-slate-900">
-                  Siniestralidad en {ciudad.nombre}
+                  {tipo === 'auto'
+                    ? `Siniestralidad Vial en ${ciudad.nombre}`
+                    : `Riesgo Habitual y Edilicio en ${ciudad.nombre}`}
                 </h3>
               </div>
-
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-                {ciudad.estadisticaLocal}
+                {tipo === 'auto'
+                  ? ciudad.estadisticaAuto || ciudad.estadisticaLocal
+                  : ciudad.estadisticaHogar || ciudad.estadisticaLocal}
               </p>
-
               <div className="bg-amber-50/80 border border-amber-200/90 rounded-2xl p-4 text-xs text-amber-950 flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                <ShieldCheck className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                 <div className="leading-relaxed">
                   <strong className="font-bold">Recomendación Local para {ciudad.nombre}:</strong>{' '}
-                  {ciudad.consejoLocal}
+                  {tipo === 'auto'
+                    ? ciudad.consejoAuto || ciudad.consejoLocal
+                    : ciudad.consejoHogar || ciudad.consejoLocal}
                 </div>
               </div>
             </div>
@@ -163,14 +193,16 @@ export default function LongTailInsurancePage({ params }: PageProps) {
               factorGlobalMultiplicador={result.factorGlobalMultiplicador}
             />
 
-            {/* CTA a la Calculadora Completa */}
+            {/* CTA a la Calculadora Principal */}
             <div className="bg-gradient-to-br from-slate-900 to-slate-850 text-white rounded-3xl p-7 shadow-xl border border-slate-800 text-center">
               <div className="w-12 h-12 bg-brand-500/20 text-brand-400 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-brand-500/30">
                 <Calculator className="w-6 h-6" />
               </div>
               <h3 className="font-bold text-lg mb-2">¿Querés ajustar estas variables?</h3>
               <p className="text-xs text-slate-300 mb-5 max-w-sm mx-auto leading-relaxed">
-                Modificá tu edad exacta, historial de siniestros o características de tu vehículo en la calculadora interactiva.
+                {tipo === 'auto'
+                  ? 'Modificá tu edad exacta, historial de siniestros o características de tu vehículo en la calculadora interactiva.'
+                  : 'Modificá la superficie en m², medidas de seguridad o tipo de vivienda en la calculadora interactiva.'}
               </p>
               <Link
                 href="/"
@@ -223,34 +255,76 @@ export default function LongTailInsurancePage({ params }: PageProps) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 bg-white">
-                <tr className="hover:bg-slate-50/50 transition-colors">
-                  <td className="p-4 font-semibold text-slate-800">
-                    {tipo === 'auto' ? 'Edad del Conductor' : 'Edad del Titular'}
-                  </td>
-                  <td className="p-4 font-medium text-slate-600">{perfil.edad} años</td>
-                  <td className="p-4 text-slate-700 font-bold">
-                    {result.desgloseFactores[0]?.impactoTexto || 'Estándar'}
-                  </td>
-                </tr>
-                <tr className="hover:bg-slate-50/50 transition-colors">
-                  <td className="p-4 font-semibold text-slate-800">
-                    {tipo === 'auto' ? 'Experiencia de Licencia' : 'Antigüedad en la Propiedad'}
-                  </td>
-                  <td className="p-4 font-medium text-slate-600">{perfil.antiguedadLicenciaAnios} años</td>
-                  <td className="p-4 text-slate-700 font-bold">
-                    {result.desgloseFactores[1]?.impactoTexto || 'Estándar'}
-                  </td>
-                </tr>
+                {tipo === 'auto' ? (
+                  <>
+                    <tr className="hover:bg-slate-50/50 transition-colors">
+                      <td className="p-4 font-semibold text-slate-800">Edad del Conductor</td>
+                      <td className="p-4 font-medium text-slate-600">{perfil.edad} años</td>
+                      <td className="p-4 text-slate-700 font-bold">
+                        {result.desgloseFactores[0]?.impactoTexto || 'Estándar'}
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-slate-50/50 transition-colors">
+                      <td className="p-4 font-semibold text-slate-800">Experiencia de Licencia</td>
+                      <td className="p-4 font-medium text-slate-600">
+                        {perfil.antiguedadLicenciaAnios} {perfil.antiguedadLicenciaAnios === 1 ? 'año' : 'años'}
+                      </td>
+                      <td className="p-4 text-slate-700 font-bold">
+                        {result.desgloseFactores[1]?.impactoTexto || 'Estándar'}
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-slate-50/50 transition-colors">
+                      <td className="p-4 font-semibold text-slate-800">Segmento del Vehículo</td>
+                      <td className="p-4 font-medium text-slate-600">Hatchback / Sedán Urbano</td>
+                      <td className="p-4 text-slate-700 font-bold">
+                        {result.desgloseFactores[2]?.impactoTexto || 'Base (0%)'}
+                      </td>
+                    </tr>
+                  </>
+                ) : (
+                  <>
+                    <tr className="hover:bg-slate-50/50 transition-colors">
+                      <td className="p-4 font-semibold text-slate-800">Régimen y Tipo de Vivienda</td>
+                      <td className="p-4 font-medium text-slate-600">
+                        {result.desgloseFactores[0]?.etiqueta || 'Vivienda Residencial'}
+                      </td>
+                      <td className="p-4 text-slate-700 font-bold">
+                        {result.desgloseFactores[0]?.impactoTexto || 'Estándar'}
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-slate-50/50 transition-colors">
+                      <td className="p-4 font-semibold text-slate-800">Superficie Cubierta</td>
+                      <td className="p-4 font-medium text-slate-600">
+                        {result.desgloseFactores[1]?.etiqueta || 'Estándar'}
+                      </td>
+                      <td className="p-4 text-slate-700 font-bold">
+                        {result.desgloseFactores[1]?.impactoTexto || 'Estándar'}
+                      </td>
+                    </tr>
+                    <tr className="hover:bg-slate-50/50 transition-colors">
+                      <td className="p-4 font-semibold text-slate-800">Medidas de Seguridad</td>
+                      <td className="p-4 font-medium text-slate-600">
+                        {result.desgloseFactores[2]?.etiqueta || 'Protección Estándar'}
+                      </td>
+                      <td className="p-4 text-slate-700 font-bold">
+                        {result.desgloseFactores[2]?.impactoTexto || 'Estándar'}
+                      </td>
+                    </tr>
+                  </>
+                )}
+
                 <tr className="hover:bg-slate-50/50 transition-colors">
                   <td className="p-4 font-semibold text-slate-800">Ubicación Geográfica</td>
                   <td className="p-4 font-medium text-slate-600">{ciudad.nombre}</td>
                   <td className="p-4 text-slate-700 font-bold">
-                    Factor Urbano {ciudad.factorRiesgoUrbano}x
+                    Factor Zonal {ciudad.factorRiesgoUrbano}x
                   </td>
                 </tr>
                 <tr className="hover:bg-slate-50/50 transition-colors">
                   <td className="p-4 font-semibold text-slate-800">
-                    {tipo === 'auto' ? 'Historial de Siniestralidad Vial' : 'Historial de Reclamos en Hogar'}
+                    {tipo === 'auto'
+                      ? 'Historial de Siniestralidad Vial'
+                      : 'Historial de Reclamos en Hogar'}
                   </td>
                   <td className="p-4 font-medium text-slate-600">Sin antecedentes en 3 años</td>
                   <td className="p-4 text-emerald-600 font-black">Bonificación aplicada (-15%)</td>
@@ -288,10 +362,10 @@ export default function LongTailInsurancePage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* Enlaces Internos a Otros Perfiles y Ciudades (SEO Siloing) */}
+        {/* Enlaces Internos a Otros Perfiles y Ciudades (SEO Siloing estricto por vertical) */}
         <section className="my-14 border-t border-slate-200/90 pt-10">
           <h3 className="font-black text-lg text-slate-900 mb-6">
-            Explorar otras combinaciones de cotización
+            Explorar otras cotizaciones de Seguro de {tipoNombre}
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
@@ -300,7 +374,7 @@ export default function LongTailInsurancePage({ params }: PageProps) {
                 Otros perfiles en {ciudad.nombre}:
               </h4>
               <ul className="space-y-2">
-                {todosLosPerfiles
+                {perfilesMismaVertical
                   .filter((p) => p.slug !== perfil.slug)
                   .map((p) => (
                     <li key={p.slug}>
@@ -323,6 +397,7 @@ export default function LongTailInsurancePage({ params }: PageProps) {
               <ul className="space-y-2">
                 {todasLasCiudades
                   .filter((c) => c.slug !== ciudad.slug)
+                  .slice(0, 10)
                   .map((c) => (
                     <li key={c.slug}>
                       <Link
@@ -338,9 +413,6 @@ export default function LongTailInsurancePage({ params }: PageProps) {
             </div>
           </div>
         </section>
-
-        {/* Bottom AdSlot */}
-        <AdSlot slotId="longtail-bottom-slot" label="Anuncio de Cierre" className="mt-10" />
       </div>
     </>
   );

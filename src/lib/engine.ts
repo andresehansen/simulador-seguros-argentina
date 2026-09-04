@@ -143,9 +143,26 @@ export function calcularCotizacion(input: CalculationInput): CalculationResult {
       (item) => item.id === seguridadId
     ) || { multiplicador: 1.0, etiqueta: 'Seguridad Estándar', impacto: 'Base (0%)', nombre: 'Protección Básica' };
 
-    const inmuebleMatch = factores.hogar.antiguedadInmuebleAnios.find(
+    let inmuebleMatch = factores.hogar.antiguedadInmuebleAnios.find(
       (item) => antiguedadInmueble >= item.min && antiguedadInmueble <= item.max
     ) || { multiplicador: 1.0, etiqueta: 'Antigüedad Estándar', impacto: 'Base (0%)' };
+
+    // Lógica específica por perfil de Hogar:
+    // 1. Inquilino no asegura estructura ni cañerías del edificio (factor antigüedad neutro 1.0)
+    if (propiedadId === 'inquilino_contenido') {
+      inmuebleMatch = {
+        multiplicador: 1.0,
+        etiqueta: 'No Aplica a Inquilinos (Solo Contenido)',
+        impacto: 'Neutro (0%)',
+      };
+    } else if (propiedadId === 'depto_piso_alto' && inmuebleMatch.multiplicador > 1.0) {
+      // 2. En departamentos en altura, el consorcio cubre columnas montantes de agua
+      inmuebleMatch = {
+        multiplicador: 1.10,
+        etiqueta: 'Antigüedad de Edificio (Riesgo Mitigado por Consorcio)',
+        impacto: 'Bajo (+10%)',
+      };
+    }
 
     const siniestroMatch = factores.hogar.historialSiniestros.find(
       (item) => item.id === siniestroId
@@ -161,7 +178,7 @@ export function calcularCotizacion(input: CalculationInput): CalculationResult {
 
     desgloseFactores.push(
       {
-        nombreFactor: 'Tipo de Vivienda',
+        nombreFactor: 'Régimen y Tipo de Vivienda',
         multiplicador: propiedadMatch.multiplicador,
         porcentajeVariacion: Math.round((propiedadMatch.multiplicador - 1) * 100),
         etiqueta: propiedadMatch.etiqueta,
@@ -189,7 +206,7 @@ export function calcularCotizacion(input: CalculationInput): CalculationResult {
         impactoTexto: inmuebleMatch.impacto,
       },
       {
-        nombreFactor: 'Historial de Reclamos',
+        nombreFactor: 'Historial de Reclamos en Hogar',
         multiplicador: siniestroMatch.multiplicador,
         porcentajeVariacion: Math.round((siniestroMatch.multiplicador - 1) * 100),
         etiqueta: siniestroMatch.etiqueta,

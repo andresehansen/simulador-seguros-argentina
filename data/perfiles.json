@@ -1,42 +1,130 @@
-[
-  {
-    "slug": "joven-novato",
-    "nombre": "Conductor Joven Novato",
-    "edad": 20,
-    "antiguedadLicenciaAnios": 1,
-    "historialSiniestros": "cero",
-    "antiguedadVehiculoAnios": 5,
-    "descripcionPerfil": "Conductores entre 18 y 24 años con menos de 2 años de licencia expedida. Representan el segmento con mayor coeficiente actuarial por falta de historial.",
-    "factoresClave": ["Falta de historial de manejo", "Mayor exposición estadística a siniestros urbanos", "Recargo por tramo de edad inicial"]
-  },
-  {
-    "slug": "conductor-experimento",
-    "nombre": "Conductor Experimentado",
-    "edad": 42,
-    "antiguedadLicenciaAnios": 15,
-    "historialSiniestros": "cero",
-    "antiguedadVehiculoAnios": 4,
-    "descripcionPerfil": "Conductores adultos con más de 10 años de trayectoria de manejo sin registros de siniestralidad reciente.",
-    "factoresClave": ["Máxima bonificación por historial limpio", "Antigüedad de carnet consolidada", "Perfil preferencial para aseguradoras"]
-  },
-  {
-    "slug": "conductor-familiar",
-    "nombre": "Uso Familiar y Cotidiano",
-    "edad": 38,
-    "antiguedadLicenciaAnios": 12,
-    "historialSiniestros": "cero",
-    "antiguedadVehiculoAnios": 2,
-    "descripcionPerfil": "Conductores de vehículos familiares de uso diario para traslados urbanos y viajes de fin de semana.",
-    "factoresClave": ["Uso mixto urbano e interurbano", "Requerimiento de coberturas amplias para terceros y ocupantes", "Vehículo reciente con bajo nivel de desgaste"]
-  },
-  {
-    "slug": "conductor-senior",
-    "nombre": "Conductor Senior (+65 años)",
-    "edad": 68,
-    "antiguedadLicenciaAnios": 40,
-    "historialSiniestros": "cero",
-    "antiguedadVehiculoAnios": 6,
-    "descripcionPerfil": "Conductores jubilados o senior con décadas de experiencia de conducción y kilometraje anual acotado.",
-    "factoresClave": ["Kilometraje anual reducido", "Décadas de antecedente de licencia", "Ajuste de prima según tabla actuarial senior"]
-  }
-]
+{
+  "auto": [
+    {
+      "slug": "joven-novato",
+      "nombre": "Conductor Joven Novato",
+      "edad": 20,
+      "antiguedadLicenciaAnios": 1,
+      "segmentoVehiculo": "hatchback_sedan",
+      "guardaHabitual": "via_publica",
+      "antiguedadVehiculoAnios": 5,
+      "historialSiniestros": "cero",
+      "descripcionPerfil": "Conductores entre 18 y 24 años con menos de 2 años de carnet habilitado. Estadísticamente representan el tramo con mayor prima de riesgo inicial por falta de antecedentes de manejo.",
+      "factoresClave": [
+        "Falta de historial de manejo",
+        "Mayor exposición estadística a siniestros urbanos",
+        "Recargo actuarial por tramo de edad inicial"
+      ]
+    },
+    {
+      "slug": "conductor-experimentado",
+      "nombre": "Conductor Experimentado",
+      "edad": 42,
+      "antiguedadLicenciaAnios": 15,
+      "segmentoVehiculo": "hatchback_sedan",
+      "guardaHabitual": "cochera_privada",
+      "antiguedadVehiculoAnios": 4,
+      "historialSiniestros": "cero",
+      "descripcionPerfil": "Conductores adultos con más de 10 años de trayectoria de manejo sin siniestros recientes. Acceden a la escala máxima de bonificación comercial.",
+      "factoresClave": [
+        "Máxima bonificación por historial limpio",
+        "Antigüedad de carnet consolidada (+10 años)",
+        "Perfil preferencial para aseguradoras"
+      ]
+    },
+    {
+      "slug": "conductor-familiar",
+      "nombre": "Uso Familiar y Cotidiano",
+      "edad": 38,
+      "antiguedadLicenciaAnios": 12,
+      "segmentoVehiculo": "suv_crossover",
+      "guardaHabitual": "cochera_comunitaria",
+      "antiguedadVehiculoAnios": 2,
+      "historialSiniestros": "cero",
+      "descripcionPerfil": "Conductores de vehículos familiares o SUVs medianas de uso diario para traslados urbanos, escolares y viajes de fin de semana.",
+      "factoresClave": [
+        "Uso mixto urbano e interurbano",
+        "Requerimiento de coberturas amplias para terceros y ocupantes",
+        "Vehículo reciente con bajo índice de desgaste"
+      ]
+    },
+    {
+      "slug": "conductor-senior",
+      "nombre": "Conductor Senior (+65 años)",
+      "edad": 68,
+      "antiguedadLicenciaAnios": 40,
+      "segmentoVehiculo": "hatchback_sedan",
+      "guardaHabitual": "cochera_privada",
+      "antiguedadVehiculoAnios": 6,
+      "historialSiniestros": "cero",
+      "descripcionPerfil": "Conductores jubilados con décadas de experiencia de conducción y kilometraje anual acotado.",
+      "factoresClave": [
+        "Kilometraje anual reducido",
+        "Décadas de antecedente de licencia",
+        "Ajuste de prima según tabla actuarial senior"
+      ]
+    }
+  ],
+  "hogar": [
+    {
+      "slug": "propietario-casa",
+      "nombre": "Propietario de Casa / Dúplex",
+      "tipoPropiedad": "casa_urbana",
+      "superficieM2": "120_250",
+      "medidasSeguridad": "rejas_puerta_blindada",
+      "antiguedadInmuebleAnios": 10,
+      "historialSiniestros": "cero",
+      "descripcionPerfil": "Propietario de vivienda unifamiliar o dúplex independiente. Requiere cobertura integral tanto de continente (estructura y techos) como de contenido (mobiliario, electrodomésticos y tecnología).",
+      "factoresClave": [
+        "Cobertura simultánea de continente y contenido",
+        "Mayor exposición perimetral y accesos a nivel de calle",
+        "Protección pasiva en aberturas y cerraduras"
+      ]
+    },
+    {
+      "slug": "propietario-departamento",
+      "nombre": "Propietario de Departamento",
+      "tipoPropiedad": "depto_piso_alto",
+      "superficieM2": "60_120",
+      "medidasSeguridad": "rejas_puerta_blindada",
+      "antiguedadInmuebleAnios": 8,
+      "historialSiniestros": "cero",
+      "descripcionPerfil": "Propietario de departamento en edificio residencial en piso medio o alto. Presenta menor vulnerabilidad ante robo externo, orientando la póliza a daños por agua, incendio y cristales.",
+      "factoresClave": [
+        "Menor riesgo actuarial de intrusión por altura",
+        "Póliza orientada a filtraciones de cañerías e incendio",
+        "Edificio con control de acceso y portería"
+      ]
+    },
+    {
+      "slug": "inquilino",
+      "nombre": "Inquilino / Locatario",
+      "tipoPropiedad": "depto_planta_baja",
+      "superficieM2": "hasta_60",
+      "medidasSeguridad": "cerradura_estandar",
+      "antiguedadInmuebleAnios": 5,
+      "historialSiniestros": "cero",
+      "descripcionPerfil": "Inquilino que alquila una propiedad residencial. Necesita asegurar exclusivamente sus bienes muebles y electrodomésticos (contenido), sumando Responsabilidad Civil Locativa hacia el propietario.",
+      "factoresClave": [
+        "Cobertura exclusiva de contenido propio (sin continente)",
+        "Responsabilidad Civil locativa ante el propietario",
+        "Amparo ante robo de electrodomésticos y tecnología"
+      ]
+    },
+    {
+      "slug": "casa-en-barrio-cerrado",
+      "nombre": "Vivienda en Country o Barrio Cerrado",
+      "tipoPropiedad": "barrio_cerrado",
+      "superficieM2": "mas_250",
+      "medidasSeguridad": "alarma_monitoreada",
+      "antiguedadInmuebleAnios": 4,
+      "historialSiniestros": "cero",
+      "descripcionPerfil": "Inmueble residencial dentro de una urbanización privada o country con control de acceso y patrullaje 24 horas. Presenta bajo riesgo de robo pero alto capital asegurable.",
+      "factoresClave": [
+        "Bonificación por vigilancia perimetral permanente",
+        "Alta suma asegurada por superficie y terminaciones",
+        "Cobertura ampliada ante tormentas y fenómenos climáticos"
+      ]
+    }
+  ]
+}

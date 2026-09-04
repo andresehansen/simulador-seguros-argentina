@@ -86,17 +86,34 @@ export interface CiudadItem {
   climaExtremoRiesgo: string;
   consejoLocal: string;
   estadisticaLocal: string;
+  consejoAuto?: string;
+  estadisticaAuto?: string;
+  consejoHogar?: string;
+  estadisticaHogar?: string;
 }
 
 export interface PerfilItem {
   slug: string;
   nombre: string;
-  edad: number;
-  antiguedadLicenciaAnios: number;
-  historialSiniestros: string;
-  antiguedadVehiculoAnios: number;
   descripcionPerfil: string;
   factoresClave: string[];
+  historialSiniestros: string;
+  // Variables Auto
+  edad?: number;
+  antiguedadLicenciaAnios?: number;
+  segmentoVehiculo?: string;
+  guardaHabitual?: string;
+  antiguedadVehiculoAnios?: number;
+  // Variables Hogar
+  tipoPropiedad?: string;
+  superficieM2?: string;
+  medidasSeguridad?: string;
+  antiguedadInmuebleAnios?: number;
+}
+
+export interface PerfilesData {
+  auto: PerfilItem[];
+  hogar: PerfilItem[];
 }
 
 export interface CalculationInput {

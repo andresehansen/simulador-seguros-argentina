@@ -179,6 +179,13 @@
         "multiplicador": 0.95,
         "etiqueta": "Vivienda en Barrio Privado con Seguridad Perimetral",
         "impacto": "Descuento (-5%)"
+      },
+      {
+        "id": "inquilino_contenido",
+        "nombre": "Inquilino (Solo Contenido)",
+        "multiplicador": 0.65,
+        "etiqueta": "Póliza Exclusiva de Contenido y RC Locativa (Excluye Continente)",
+        "impacto": "Descuento (-35%)"
       }
     ],
     "superficieM2": [
