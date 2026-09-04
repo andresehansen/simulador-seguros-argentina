@@ -39,6 +39,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/politica-de-privacidad" className="hover:text-white transition text-slate-300 font-medium">
+                  Política de Privacidad y Cookies
+                </Link>
+              </li>
+              <li>
                 <Link href="/" className="hover:text-white transition">
                   Calculadora Interactiva de Seguros
                 </Link>
@@ -54,9 +59,15 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-slate-800 mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
+        <div className="border-t border-slate-800 mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-2">
           <p>© {new Date().getFullYear()} SeguroSimulador Argentina. Todos los derechos reservados.</p>
-          <p className="mt-2 sm:mt-0">Proyecto Estático Optimizado para Alto Rendimiento SEO.</p>
+          <div className="flex items-center gap-4">
+            <Link href="/politica-de-privacidad" className="hover:text-slate-300 transition underline">
+              Política de Privacidad
+            </Link>
+            <span>·</span>
+            <p className="mt-2 sm:mt-0">Proyecto Estático Optimizado para Alto Rendimiento SEO.</p>
+          </div>
         </div>
       </div>
     </footer>

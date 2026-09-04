@@ -90,12 +90,12 @@ for (const ant of factores.hogar.antiguedadInmuebleAnios) {
 // 6. Conteo de URLs públicas
 const totalRutasAuto = ciudades.length * perfiles.auto.length;
 const totalRutasHogar = ciudades.length * perfiles.hogar.length;
-const totalRutasFijas = 4; // home, sobre-nosotros, como-calculamos, glosario-seguros
+const totalRutasFijas = 5; // home, sobre-nosotros, como-calculamos, glosario-seguros, politica-de-privacidad
 const totalSitemap = totalRutasAuto + totalRutasHogar + totalRutasFijas;
 
 assert(totalRutasAuto === 60, `60 rutas de Auto (15 ciudades × 4 perfiles)`);
 assert(totalRutasHogar === 60, `60 rutas de Hogar (15 ciudades × 4 perfiles)`);
-assert(totalSitemap === 124, `Total 124 URLs públicas en sitemap (60 auto + 60 hogar + 4 fijas)`);
+assert(totalSitemap === 125, `Total 125 URLs públicas en sitemap (60 auto + 60 hogar + 5 fijas)`);
 
 console.log(`\n========================================`);
 console.log(`Resumen: ${passedTests} pruebas pasadas, ${failedTests} falladas.`);
